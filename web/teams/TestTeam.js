@@ -1,0 +1,10 @@
+
+
+function TeamAAgent() {
+	
+}
+
+
+function TeamBAgent() {
+	
+}
