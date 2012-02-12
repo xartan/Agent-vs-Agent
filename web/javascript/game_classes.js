@@ -70,5 +70,9 @@ function GameMaster() {
 	 	this.gamingField = new GamingField();
 	 	this.createAgents(3);
 	 }
+
+
+	 asldf asldfasdfasd
+	 functionasdfj
 }
 
