@@ -71,8 +71,5 @@ function GameMaster() {
 	 	this.createAgents(3);
 	 }
 
-
-	 asldf asldfasdfasd
-	 functionasdfj
 }
 
