@@ -51,7 +51,9 @@ function GameMaster() {
 	 this.teamAAgents = [];
 	 this.teamBAgents = [];
 
-	 this.createAgents = function(agentsPerTeam){
+	 this.actingOrder = [];
+
+	 this.resetAgents = function(agentsPerTeam){
 	 	this.teamAAgents = [];
 	 	this.teamBAgents = [];
 
@@ -59,16 +61,41 @@ function GameMaster() {
 	 		this.teamAAgents.push(new TeamAAgent());
 	 		this.teamBAgents.push(new TeamBAgent());
 	 	}
+	 }
 
 
+	 this.resetGamingField = function(){
+	 	this.gamingField = new GamingField();
+	 }
+
+	 this.placeAgents = function(){
 	 	this.gamingField.placeAll(this.teamAAgents, this.teamAHomeBase);
 	 	this.gamingField.placeAll(this.teamBAgents, this.teamBHomeBase);
 	 }
 
+	 this.determinActingOrder = function(){
+	 	this.actingOrder = [];
+	 	if (Math.random() < 0.5) {
+	 		// start with team A
+	 		for (var i = 0; i < this.teamAAgents.length; i++) {
+	 			this.actingOrder.push(this.teamAAgents[i]);
+	 			this.actingOrder.push(this.teamBAgents[i]);
+	 		};
 
-	 this.createGamingField = function(){
-	 	this.gamingField = new GamingField();
-	 	this.createAgents(3);
+	 	} else {
+	 		// start with team B
+	 		for (var i = 0; i < this.teamAAgents.length; i++) {
+	 			this.actingOrder.push(this.teamBAgents[i]);
+	 			this.actingOrder.push(this.teamAAgents[i]);
+	 		};
+		}; 
+	 }
+
+	 this.newGame = function(){
+	 	this.resetGamingField();
+	 	this.resetAgents(3);
+	 	this.placeAgents();
+	 	this.determinActingOrder();
 	 }
 
 }

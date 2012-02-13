@@ -1,6 +1,7 @@
 # Game Creation
 
 Game Master:
+
  - create GamingField
  - remember that (0,0) belongs to Team A
  - remember that (7,7) belongs to Team B
@@ -9,8 +10,9 @@ Game Master:
  - determin acting order
  - initiante agents
 
- # Game Loop
- while ( scored points < distributed points)
+# Game Loop
+<pre>
+while ( scored points < distributed points)
   for each agent in acting order:
    - notify agent about entities in its vicinity (also tell what kind of entity it is {enemy, point, friend})
    - ask agent to choose one of these actions: {move, collect, communicate}
@@ -28,6 +30,7 @@ Game Master:
    if(agent on homebase AND agent has point):
    	- score for agents team
    	- send message to all agents of this team
+</pre>
 
 # Game Over
  .. do statictis stuff if you like
