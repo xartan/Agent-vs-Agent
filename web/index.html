@@ -4,9 +4,77 @@
 			src="teams/TestTeam.js"></script>
 		<script type="text/javascript" 
 			src="javascript/game_classes.js"></script>
+
+		<link rel="stylesheet" type="text/css" 
+			href="style/default.css">
 	</head>
 
 	<body>
+
+		<div id="page">
+			
+			<div id="page_header">
+				<span id="teamAScore" class="score">2</span>
+				<span id="teamBScore" class="score">1</span>
+			</div>
+
+			<div id="gaming_field">
+				<div id="gaming_field">
+					<table>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
+					</table>
+				</div>
+			</div>
+
+			<div id="controlls">
+				<input type="button" value="next move">
+			</div>
+
+			<hr>
+
+			<div id="logs">
+
+				<h1>Logs</h1>
+
+				<div class="agent_log red_team_log">
+					<div class="actor">agent 1</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+				<div class="agent_log red_team_log">
+					<div class="actor">agent 2</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+				<div class="agent_log red_team_log">
+					<div class="actor">agent 3</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="agent_log blue_team_log">
+					<div class="actor">agent 1</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+				<div class="agent_log blue_team_log">
+					<div class="actor">agent 2</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+				<div class="agent_log blue_team_log">
+					<div class="actor">agent 3</div>
+					<textarea readonly>Hallo</textarea>
+				</div>
+			</div>
+			
+			<div class="clear"> </div>
+			
+		</div>
 
 
 		<script type="text/javascript">

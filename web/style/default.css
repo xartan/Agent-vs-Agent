@@ -1,0 +1,107 @@
+#page{
+	min-width: 600px;
+	max-width: 800px;
+	margin: 20px auto 40px auto;
+	background-color: white;
+	min-height:50%;
+
+	padding-bottom: 50px;
+
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px 5px #555;
+}
+
+#page_header {
+	clear: both;
+}
+
+#teamAScore {
+	float: left;
+	background-color: #F97083;
+	border-radius: 5px 0px 0px 0px;
+}
+
+#teamBScore {
+	float: right;
+	background-color: #7080D7;
+	border-radius: 0px 5px 0px 0px;
+}
+
+
+.score {
+	font: normal normal bold 3em Arial, sans-serif;
+	width: 50%;
+	text-align: center;
+	box-shadow: 0px 10px 10px -10px #555;
+}
+
+#gaming_field{
+	clear: both;
+}
+
+
+body {
+	background-color: #FDFF73;
+}
+
+.clear {
+	clear: both;
+}
+
+#gaming_field {
+	text-align: center;
+	padding: 15px 0px 15px 0px;
+}
+
+#gaming_field table {
+	width: 500px;
+	height: 500px;
+	margin: 5px auto 5px auto;
+	border-spacing: 0px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: 030303;
+}
+
+#gaming_field td {
+	border-style: solid;
+	border-color: 030303;
+	border-width: 1px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#controlls {
+	text-align: right;
+	padding-right: 10px;
+}
+
+#controlls input {
+	font-size: 5em;
+}
+
+
+#logs {
+	padding: 10px;
+}
+
+.agent_log {
+	float: left;
+	box-shadow: 0px 0px 3px 1px #555;
+	margin: 5px;
+	padding: 3px;
+	width:30%;
+}
+
+.agent_log textarea {
+	width: 100%;
+}
+
+.red_team_log {
+	background-color: #F97083;
+}
+
+.blue_team_log {
+	background-color: #7080D7;
+}
+
