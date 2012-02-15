@@ -34,8 +34,19 @@ function GamingField(){
 		}
 	}
 
+	this.place = function(gamingFieldEntitie, coordinates) {
+		var allreadyPresent = this.getAll(coordinates);
+		allreadyPresent.push(gamingFieldEntitie);
+	}
+
 	
 
+}
+
+function Point() {
+	this.getType = function(){
+		return "Point";
+	}
 }
 
 
@@ -91,10 +102,28 @@ function GameMaster() {
 		}; 
 	 }
 
+	 this.baseIndexTo2dCoords = function(baseIndex) {
+	 	var basesPerLine = 8;
+	 	var y = Math.floor(baseIndex / basesPerLine);
+	 	var x = (baseIndex % basesPerLine);
+	 	return [x,y];
+	 }
+
+	 this.distributePoints = function(numberOfPoints) {
+	 	var numberOfBases = 8*8;
+	 	for(var i = 0; i < numberOfBases; i++) {
+	 		var baseIndex = Math.floor(Math.random() * numberOfBases);
+	 		// baseIndex to 2d coords
+	 		var coords2d = this.baseIndexTo2dCoords(baseIndex);
+	 		this.gamingField.place(new Point(), coords2d);
+	 	}
+	 }
+
 	 this.newGame = function(){
 	 	this.resetGamingField();
 	 	this.resetAgents(3);
 	 	this.placeAgents();
+	 	this.distributePoints(7);
 	 	this.determinActingOrder();
 	 }
 
