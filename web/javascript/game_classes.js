@@ -68,6 +68,14 @@ function GameMaster() {
 
 	 this.actingOrder = [];
 
+	 this.moveCount = 0;
+
+	 this.pointsDistributed = 0;
+	 this.teamAScore = 0;
+	 this.teamBScore = 0;
+
+	 this.nextAgentInLine = 0;
+
 	 this.resetAgents = function(agentsPerTeam){
 	 	this.teamAAgents = [];
 	 	this.teamBAgents = [];
@@ -114,12 +122,67 @@ function GameMaster() {
 	 }
 
 	 this.distributePoints = function(numberOfPoints) {
+	 	this.pointsDistributed = numberOfPoints;
 	 	var numberOfBases = 8*8;
 	 	for(var i = 0; i < numberOfPoints; i++) {
 	 		var baseIndex = Math.floor(Math.random() * numberOfBases);
 	 		// baseIndex to 2d coords
 	 		var coords2d = this.baseIndexTo2dCoords(baseIndex);
 	 		this.gamingField.place(new Point(), coords2d);
+	 	}
+	 }
+
+	this.executeMove = function(agent){
+		
+	}
+
+	this.executeComunicate = function(agent){
+		
+	}
+
+	this.executeCollect = function(agent){
+		
+	}
+
+	this.processChoice = function(agent, choice) {
+	 	switch(choice) {
+	 		case "move":
+	 			this.executeMove(agent);
+	 			break;
+ 			case "comunicate":
+ 				this.executeComunicate(agent);
+ 				break;
+ 			case "collect":
+ 				this.executeCollect(agent);
+ 				break;
+			case "skip":
+ 				break;
+ 			default:
+ 				console.log("GameMaster does not understand choice: " + choice + " of agent: " + agent);
+	 	}
+	 }
+
+	 this.explainSurroundingsTo = function(activeAgent){
+	 	
+	 }
+
+	 // returns false if the game is over
+	 this.nextMove = function(){
+	 	console.log("this.teamAScore: " + this.teamAScore);
+	 	console.log("this.teamBScore: " + this.teamBScore);
+	 	console.log("this.pointsDistributed: " + this.pointsDistributed);
+
+	 	if((this.teamAScore + this.teamBScore) < this.pointsDistributed){
+	 		// there are still uncollected points
+	 		var activeAgent = this.actingOrder[this.nextAgentInLine];
+	 		this.explainSurroundingsTo(activeAgent);
+	 		var choice = activeAgent.chooseAction();
+	 		this.processChoice(activeAgent, choice);
+	 		this.nextAgentInLine %= this.actingOrder.length;
+	 		return true;
+	 	} else {
+	 		// all points are collected
+	 		return false; // no next move!
 	 	}
 	 }
 
