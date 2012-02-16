@@ -111,7 +111,7 @@ function GameMaster() {
 
 	 this.distributePoints = function(numberOfPoints) {
 	 	var numberOfBases = 8*8;
-	 	for(var i = 0; i < numberOfBases; i++) {
+	 	for(var i = 0; i < numberOfPoints; i++) {
 	 		var baseIndex = Math.floor(Math.random() * numberOfBases);
 	 		// baseIndex to 2d coords
 	 		var coords2d = this.baseIndexTo2dCoords(baseIndex);
