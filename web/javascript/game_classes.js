@@ -39,6 +39,10 @@ function GamingField(){
 		allreadyPresent.push(gamingFieldEntitie);
 	}
 
+	// returns an array [width, height]
+	this.getSize = function() {
+		return [8,8];
+	}
 	
 
 }

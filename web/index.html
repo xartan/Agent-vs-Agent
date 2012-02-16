@@ -1,9 +1,15 @@
 <html>
 	<head>
 		<script type="text/javascript" 
+			src="javascript/jquery.js"></script>
+		<script type="text/javascript" 
+			src="javascript/for_each.js"></script>
+		<script type="text/javascript" 
 			src="teams/TestTeam.js"></script>
 		<script type="text/javascript" 
 			src="javascript/game_classes.js"></script>
+		<script type="text/javascript" 
+			src="javascript/visualize.js"></script>
 
 		<link rel="stylesheet" type="text/css" 
 			href="style/default.css">
@@ -19,7 +25,6 @@
 			</div>
 
 			<div id="gaming_field">
-				<div id="gaming_field">
 					<table>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
@@ -30,7 +35,6 @@
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 					</table>
-				</div>
 			</div>
 
 			<div id="controlls">
@@ -43,30 +47,30 @@
 
 				<h1>Logs</h1>
 
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 1</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 2</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 3</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
 
 				<div class="clear"></div>
 
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 1</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 2</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 3</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
@@ -80,6 +84,7 @@
 		<script type="text/javascript">
 			var gm = new GameMaster();
 			gm.newGame();
+			visualizeGamingFieldInto(gm.gamingField, gaming_field);
 		</script>
 	</body>
 

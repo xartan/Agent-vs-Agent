@@ -54,8 +54,8 @@ body {
 }
 
 #gaming_field table {
-	width: 500px;
-	height: 500px;
+	#width: 504px; # 8 * 63
+	#height: 504px;
 	margin: 5px auto 5px auto;
 	border-spacing: 0px;
 	border-width: 1px;
@@ -64,6 +64,10 @@ body {
 }
 
 #gaming_field td {
+	width: 4em;
+	height: 4em;
+	vertical-align: top;
+	text-align: left;
 	border-style: solid;
 	border-color: 030303;
 	border-width: 1px;
@@ -97,11 +101,43 @@ body {
 	width: 100%;
 }
 
-.red_team_log {
+.team_a_log {
 	background-color: #F97083;
 }
 
-.blue_team_log {
+.team_b_log {
 	background-color: #7080D7;
 }
 
+
+#gaming_field .Point {
+	width: 1em;
+	height: 1em;
+	padding: 0px;
+	background-image: url(../images/point.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: 50% 50%;
+	float: left;
+}
+
+#gaming_field .TeamAAgent {
+	width: 2em;
+	height: 2em;
+	float: left;
+	background-image: url(../images/agent_red.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: auto 100%;
+
+}
+
+#gaming_field .TeamBAgent {
+	width: 2em;
+	height: 2em;
+	float: left;
+	background-image: url(../images/agent_blue.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: auto 100%;
+}
