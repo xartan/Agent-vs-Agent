@@ -43,6 +43,22 @@ function GamingField(){
 	this.getSize = function() {
 		return [8,8];
 	}
+
+	// returns the position or false if the item was not found
+	this.remove = function(gamingFieldEntitie){
+		this.bases.foreach(function(y, row){
+			row.foreach(function(x, items){
+				var idx = items.indexOf(gamingFieldEntitie);
+				if(idx === -1){
+					// item not found
+					return false;
+				} else {
+					items.splice(idx -1 , 1);
+					return [x,y];
+				}
+			})
+		})
+	}
 	
 
 }
@@ -132,8 +148,77 @@ function GameMaster() {
 	 	}
 	 }
 
+	 this.stepNorth = function(coords){
+	 	var y = coords[1]+1;
+		if(y > 7) y = 7;
+		return [coords[0], y];
+	 }
+
+	 this.stepEast = function(coords){
+	 	var x = coords[0]+1;
+		if(x > 7) x = 7;
+		return [x, coords[1]];
+	 }
+
+	 this.stepSouth = function(coords){
+	 	var y = coords[1]-1;
+		if(y < 0) y = 0;
+		return [coords[0], y];
+	 }
+
+	 this.stepWest = function(coords){
+	 	var x = coords[0]-1;
+		if(x < 0) x = 0;
+		return [x, coords[1]];
+	 }
+
 	this.executeMove = function(agent){
-		
+		var direction = agent.getMoveDirection().toUpperCase();
+
+		var oldPosition = this.gamingField.remove(agent);
+		if(oldPosition === false){
+			console.log("Fatal ERROR: agent was not found in GamingField!!!");
+			return;
+		}
+
+		var newPosition;
+		switch(direction){
+			case "N":
+				newPosition = this.stepNorth(oldPosition);
+				break;
+			case "NE":
+			case "EN":
+				newPosition = this.stepEast(this.stepNorth(oldPosition));
+				break;
+			case "E":
+				newPosition = this.stepEast(oldPosition);
+				break;
+			case "SE":
+			case "ES":
+				newPosition = this.stepEast(this.stepSouth(oldPosition));
+				break;
+			case "S":
+				newPosition = this.stepSouth(oldPosition);
+				break;
+			case "SW":
+			case "WS":
+				newPosition = this.stepWest(this.stepSouth(oldPosition));
+				break;
+			case "W":
+				newPosition = this.stepWest(oldPosition);
+				break;
+			case "NW":
+			case "WN":
+				newPosition = this.stepWest(this.stepNorth(oldPosition));
+				break;
+
+			default:
+				console.log("GameMaster does not understand direction: " + direction + " from agent: " + agent);
+				break;
+		}
+
+		this.gamingField.place(agent, newPosition);
+		agent.newPosition(newPosition);
 	}
 
 	this.executeComunicate = function(agent){
@@ -166,11 +251,15 @@ function GameMaster() {
 	 	
 	 }
 
+	 this.getAgentId = function(agent){
+	 	return this.actingOrder.indexOf(agent);
+	 }
+
 	 // returns false if the game is over
 	 this.nextMove = function(){
-	 	console.log("this.teamAScore: " + this.teamAScore);
-	 	console.log("this.teamBScore: " + this.teamBScore);
-	 	console.log("this.pointsDistributed: " + this.pointsDistributed);
+	 	//console.log("this.teamAScore: " + this.teamAScore);
+	 	//console.log("this.teamBScore: " + this.teamBScore);
+	 	//console.log("this.pointsDistributed: " + this.pointsDistributed);
 
 	 	if((this.teamAScore + this.teamBScore) < this.pointsDistributed){
 	 		// there are still uncollected points

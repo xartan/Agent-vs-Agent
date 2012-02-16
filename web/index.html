@@ -16,13 +16,20 @@
 
 
 		<script type="text/javascript">
+			var log = function(agent, msg){
+				var agentId = gm.getAgentId(agent);
+				if (agentId >= 0) {
+					console.log("agent["+agentId+"]: " + msg);	
+				};
+			}
+
 			var gm = new GameMaster();
 			gm.newGame();
 
 			var nextMove = function(){
 				console.log("nextMove");
 				var hasNextMove = gm.nextMove();
-				console.log("hasNextMove: " + hasNextMove);
+				//console.log("hasNextMove: " + hasNextMove);
 				if(hasNextMove){
 					startTimer(true);
 				} else {

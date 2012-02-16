@@ -1,4 +1,6 @@
 var visualizeGamingFieldInto = function(field, domObj) {
+	console.log("visualizeGamingFieldInto called");
+
 	var html = "";
 
 	html += "<table>";

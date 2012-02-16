@@ -6,7 +6,11 @@ function TeamAAgent() {
 	}
 
 	this.chooseAction = function(){
-		return "skip";
+		return "move";
+	}
+
+	this.getMoveDirection = function() {
+		return "N";
 	}
 	
 }
@@ -19,5 +23,9 @@ function TeamBAgent() {
 
 	this.chooseAction = function(){
 		return "skip";	
+	}
+
+	this.getMoveDirection = function() {
+		return "S";
 	}
 }
