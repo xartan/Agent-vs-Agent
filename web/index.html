@@ -1,13 +1,22 @@
 <html>
 	<head>
+		<!-- Helpers and the all time favorit jquery lib ;)  -->
 		<script type="text/javascript" 
 			src="javascript/jquery.js"></script>
 		<script type="text/javascript" 
 			src="javascript/for_each.js"></script>
+		
+		<!-- include the Agent vs Agent stuff -->
 		<script type="text/javascript" 
 			src="teams/TestTeam.js"></script>
 		<script type="text/javascript" 
-			src="javascript/game_classes.js"></script>
+			src="javascript/game_objects/GameMaster.js"></script>
+		<script type="text/javascript" 
+			src="javascript/game_objects/GamingField.js"></script>
+		<script type="text/javascript" 
+			src="javascript/game_objects/Point.js"></script>
+
+		<!-- functions in this file are responsable to convert js objects into html. -->
 		<script type="text/javascript" 
 			src="javascript/visualize.js"></script>
 
@@ -15,6 +24,7 @@
 			href="style/default.css">
 
 
+		<!-- This js code is specific for this html site. -->
 		<script type="text/javascript">
 			var log = function(agent, msg){
 				var agentId = gm.getAgentId(agent);
