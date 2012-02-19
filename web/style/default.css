@@ -142,3 +142,10 @@ body {
 	background-position: 50% 50%;
 	background-size: auto 100%;
 }
+
+#main_log {
+	width: 100%;
+	min-height: 8em;
+}
+
+

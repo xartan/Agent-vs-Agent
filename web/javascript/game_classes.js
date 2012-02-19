@@ -46,6 +46,24 @@ function GamingField(){
 
 	// returns the position or false if the item was not found
 	this.remove = function(gamingFieldEntitie){
+		var size = this.getSize();
+
+		for(var y = 0; y < size[1]; y++){
+			for(var x = 0; x < size[0]; x++){
+				var items = this.bases[x][y];
+				var idx = items.indexOf(gamingFieldEntitie);
+				if(idx === -1){
+					// item not found
+					return false;
+				} else {
+					items.splice(idx -1 , 1);
+					var result = [x,y];
+					console.log("GamingField.remove("+gamingFieldEntitie.getType()+") -> " + result);
+					return result;
+				}
+			}
+		}
+
 		this.bases.foreach(function(y, row){
 			row.foreach(function(x, items){
 				var idx = items.indexOf(gamingFieldEntitie);
@@ -54,10 +72,12 @@ function GamingField(){
 					return false;
 				} else {
 					items.splice(idx -1 , 1);
-					return [x,y];
+					var result = [x,y];
+					console.log("GamingField.remove("+gamingFieldEntitie.getType()+") -> " + result);
+					return result;
 				}
-			})
-		})
+			});
+		});
 	}
 	
 
@@ -127,7 +147,8 @@ function GameMaster() {
 	 			this.actingOrder.push(this.teamBAgents[i]);
 	 			this.actingOrder.push(this.teamAAgents[i]);
 	 		};
-		}; 
+		};
+		console.log("GameMaster.actingOrder: " + this.actingOrder);
 	 }
 
 	 this.baseIndexTo2dCoords = function(baseIndex) {
@@ -277,7 +298,7 @@ function GameMaster() {
 
 	 this.newGame = function(){
 	 	this.resetGamingField();
-	 	this.resetAgents(3);
+	 	this.resetAgents(1);
 	 	this.placeAgents();
 	 	this.distributePoints(7);
 	 	this.determinActingOrder();
