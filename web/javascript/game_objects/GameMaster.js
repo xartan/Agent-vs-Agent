@@ -56,7 +56,6 @@ function GameMaster() {
 	 			this.actingOrder.push(this.teamAAgents[i]);
 	 		};
 		};
-		console.log("GameMaster.actingOrder: " + this.actingOrder);
 	 }
 
 	 this.baseIndexTo2dCoords = function(baseIndex) {
@@ -177,7 +176,18 @@ function GameMaster() {
 	 }
 
 	 this.explainSurroundingsTo = function(activeAgent){
+	 	var agentPosition = this.gamingField.getCoordinatesOf(activeAgent);
+	 	var surrounding = this.gamingField.getSurroundingFor(agentPosition);
+	 	// remove the agent from the surrounding
+	 	var center = surrounding.C;
+	 	if(center.length === 1){
+	 		delete surrounding.C;
+	 	} else {
+	 		var idx = (surrounding.C).indexOf(activeAgent.getType());
+		 	(surrounding.C).splice(idx, 1);
+	 	}
 	 	
+	 	activeAgent.newSurrounding(surrounding);
 	 }
 
 	 this.getAgentId = function(agent){
@@ -192,14 +202,17 @@ function GameMaster() {
 
 	 	if((this.teamAScore + this.teamBScore) < this.pointsDistributed){
 	 		// there are still uncollected points
+	 		console.log("GameMaster.nextMove() : next agent in line: " + this.nextAgentInLine);
 	 		var activeAgent = this.actingOrder[this.nextAgentInLine];
 	 		this.explainSurroundingsTo(activeAgent);
 	 		var choice = activeAgent.chooseAction();
 	 		this.processChoice(activeAgent, choice);
+	 		this.nextAgentInLine++;
 	 		this.nextAgentInLine %= this.actingOrder.length;
 	 		return true;
 	 	} else {
 	 		// all points are collected
+	 		console.log("GameMaster: all points are collected. No next move.");
 	 		return false; // no next move!
 	 	}
 	 }
