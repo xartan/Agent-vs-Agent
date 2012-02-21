@@ -1,12 +1,85 @@
 <html>
 	<head>
+		<!-- Helpers and the all time favorit jquery lib ;)  -->
+		<script type="text/javascript" 
+			src="javascript/jquery.js"></script>
+		<script type="text/javascript" 
+			src="javascript/for_each.js"></script>
+		
+		<!-- include the Agent vs Agent stuff -->
 		<script type="text/javascript" 
 			src="teams/TestTeam.js"></script>
 		<script type="text/javascript" 
-			src="javascript/game_classes.js"></script>
+			src="javascript/game_objects/GameMaster.js"></script>
+		<script type="text/javascript" 
+			src="javascript/game_objects/GamingField.js"></script>
+		<script type="text/javascript" 
+			src="javascript/game_objects/Point.js"></script>
+
+		<!-- functions in this file are responsable to convert js objects into html. -->
+		<script type="text/javascript" 
+			src="javascript/visualize.js"></script>
 
 		<link rel="stylesheet" type="text/css" 
 			href="style/default.css">
+
+
+		<!-- This js code is specific for this html site. -->
+		<script type="text/javascript">
+			var log = function(agent, msg){
+				var agentId = gm.getAgentId(agent);
+				if (agentId >= 0) {
+					console.log("agent["+agentId+"]: " + msg);	
+				};
+			}
+
+			var gm = new GameMaster();
+			gm.newGame();
+
+			var nextMove = function(){
+				console.log("nextMove");
+				var hasNextMove = gm.nextMove();
+				//console.log("hasNextMove: " + hasNextMove);
+				if(hasNextMove){
+					startTimer(true);
+				} else {
+					alert("Game Over");
+				}
+
+				visualizeGamingFieldInto(gm.gamingField, gaming_field);
+			}
+
+
+			var timer = null;
+			var timeout = 1000;
+
+			var startTimer = function(forced){
+				// if not already running -> start
+				if (forced || timer == null) {
+					timer = setTimeout("nextMove()", timeout);
+				};
+			}
+
+			var stopTimer = function(){
+				// stop if already running
+				if (timer != null) {
+					clearTimeout(timer);
+					timer = null;
+				};
+			}
+
+			var startGameLoop = function () {
+				$('#start_game_loop').attr('disabled', true);
+				$('#stop_game_loop').removeAttr('disabled');
+				startTimer();
+			}
+
+			var stopGameLoop = function () {
+				$('#start_game_loop').removeAttr('disabled');
+				$('#stop_game_loop').attr('disabled', true);
+				stopTimer();
+			}	
+		</script>
 	</head>
 
 	<body>
@@ -19,7 +92,6 @@
 			</div>
 
 			<div id="gaming_field">
-				<div id="gaming_field">
 					<table>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
@@ -30,43 +102,43 @@
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 						<tr> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td></tr>
 					</table>
-				</div>
 			</div>
 
 			<div id="controlls">
-				<input type="button" value="next move">
+				<input id="start_game_loop" type="button" value="start game loop" onclick="startGameLoop()">
+				<input id="stop_game_loop" type="button" value="stop game loop" disabled="true" onclick="stopGameLoop()">
+				<!-- <input type="button" value="next move"> -->
 			</div>
 
 			<hr>
 
 			<div id="logs">
-
 				<h1>Logs</h1>
 
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 1</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 2</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log red_team_log">
+				<div class="agent_log team_a_log">
 					<div class="actor">agent 3</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
 
 				<div class="clear"></div>
 
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 1</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 2</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
-				<div class="agent_log blue_team_log">
+				<div class="agent_log team_b_log">
 					<div class="actor">agent 3</div>
 					<textarea readonly>Hallo</textarea>
 				</div>
@@ -78,8 +150,7 @@
 
 
 		<script type="text/javascript">
-			var gm = new GameMaster();
-			gm.newGame();
+			visualizeGamingFieldInto(gm.gamingField, gaming_field);
 		</script>
 	</body>
 
